@@ -13,8 +13,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button mTrueButton;
     private Button mFalseButton;
+    private Button mNextButton;
 
-    private MartinWong.quizapp.Question firstQuestion;
+    private MartinWong.quizapp.Question[] mQuestions;
+    private int mIndex;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,25 +25,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mTrueButton = (Button) findViewById(R.id.true_button);
         mFalseButton = (Button) findViewById(R.id.false_button);
+        mNextButton = (Button) findViewById(R.id.next_button);
+
         mTrueButton.setOnClickListener(this);
         mFalseButton.setOnClickListener(this);
+        mNextButton.setOnClickListener(this);
+
+        mQuestions= new MartinWong.quizapp.Question[5];
+        mIndex=0;
 
         mTextView=(TextView) findViewById(R.id.text_view);
-        firstQuestion= new MartinWong.quizapp.Question(R.string.question1, true);
-        mTextView.setText(firstQuestion.getTextResId());
+        mQuestions[0]= new MartinWong.quizapp.Question(R.string.question1, true);
+        mQuestions[1]= new MartinWong.quizapp.Question(R.string.question1, true);
+        mQuestions[2]= new MartinWong.quizapp.Question(R.string.question1, true);
+        mQuestions[3]= new MartinWong.quizapp.Question(R.string.question1, false);
+        mQuestions[4]= new MartinWong.quizapp.Question(R.string.question1, true);
+
+        mTextView.setText(mQuestions[mIndex].getTextResId());
     }
 
     @Override
     public void onClick(View view) {
-        if(view.getId()== R.id.true_button && firstQuestion.getAnswer()== true) {
+        if(view.getId()== R.id.true_button && mQuestions[mIndex].getAnswer()== true) {
+            checkAnswer(true);
+        }else if(view.getId()== R.id.false_button && mQuestions[mIndex].getAnswer()== false) {
+            checkAnswer(false);
+        }
+        else if(view.getId()== R.id.next_button)
+        {
+            mIndex++;
+            //Do if statement here:
+
+            mTextView.setText(mQuestions[mIndex].getTextResId());
+
+
+        }
+    }
+    public boolean checkAnswer(boolean userInput)
+    {
+        if(mQuestions[mIndex].getAnswer()==userInput)
+        {
             Toast myToast = Toast.makeText(this, "You are correct", Toast.LENGTH_SHORT);
             myToast.show();
-        }else if(view.getId()== R.id.false_button && firstQuestion.getAnswer()== false) {
-            Toast myToast = Toast.makeText(this, "You are correct", Toast.LENGTH_SHORT);
-            myToast.show();
-        }else{
+            return true;
+        }
+        else
+        {
             Toast myToast = Toast.makeText(this, "You are incorrect", Toast.LENGTH_SHORT);
             myToast.show();
+            return false;
         }
     }
 }
