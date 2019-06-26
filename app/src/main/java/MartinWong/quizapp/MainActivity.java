@@ -36,19 +36,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mTextView=(TextView) findViewById(R.id.text_view);
         mQuestions[0]= new MartinWong.quizapp.Question(R.string.question1, true);
-        mQuestions[1]= new MartinWong.quizapp.Question(R.string.question1, true);
-        mQuestions[2]= new MartinWong.quizapp.Question(R.string.question1, true);
-        mQuestions[3]= new MartinWong.quizapp.Question(R.string.question1, false);
-        mQuestions[4]= new MartinWong.quizapp.Question(R.string.question1, true);
+        mQuestions[1]= new MartinWong.quizapp.Question(R.string.question2, true);
+        mQuestions[2]= new MartinWong.quizapp.Question(R.string.question3, true);
+        mQuestions[3]= new MartinWong.quizapp.Question(R.string.question4, false);
+        mQuestions[4]= new MartinWong.quizapp.Question(R.string.question5, true);
 
         mTextView.setText(mQuestions[mIndex].getTextResId());
     }
 
     @Override
     public void onClick(View view) {
-        if(view.getId()== R.id.true_button && mQuestions[mIndex].getAnswer()== true) {
+        if(view.getId()== R.id.true_button ) {
             checkAnswer(true);
-        }else if(view.getId()== R.id.false_button && mQuestions[mIndex].getAnswer()== false) {
+        }else if(view.getId()== R.id.false_button ) {
             checkAnswer(false);
         }
         else if(view.getId()== R.id.next_button)
