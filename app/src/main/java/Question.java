@@ -2,11 +2,13 @@ package MartinWong.quizapp;
 
 public class Question {
     private int mTextResId;
+    private int mHintTextResId;
     private boolean mAnswer;
 
 
-    public Question(int textResId, boolean answer) {
+    public Question(int textResId, int hintResId, boolean answer) {
         mTextResId = textResId;
+        mHintTextResId=hintResId;
         mAnswer = answer;
     }
 

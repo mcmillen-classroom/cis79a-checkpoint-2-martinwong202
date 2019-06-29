@@ -3,20 +3,28 @@ package MartinWong.quizapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mTextView;
-
+//    private ScoreView mScoreView;
+//    private Text mScoreview1;
+//    private Text mText;
     private Button mTrueButton;
     private Button mFalseButton;
-    private Button mNextButton;
+    private ImageButton mNextButton;
+    private ImageButton mBackButton;
+    private Button mHintButton;
 
     private MartinWong.quizapp.Question[] mQuestions;
     private int mIndex;
+    private int mScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,21 +33,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mTrueButton = (Button) findViewById(R.id.true_button);
         mFalseButton = (Button) findViewById(R.id.false_button);
-        mNextButton = (Button) findViewById(R.id.next_button);
+        mNextButton = (ImageButton) findViewById(R.id.next_button);
+        mBackButton = (ImageButton) findViewById(R.id.BackButton);
+        mHintButton = (Button) findViewById(R.id.HintButton);
 
         mTrueButton.setOnClickListener(this);
         mFalseButton.setOnClickListener(this);
         mNextButton.setOnClickListener(this);
+        mBackButton.setOnClickListener(this);
+        mHintButton.setOnClickListener(this);
 
         mQuestions= new MartinWong.quizapp.Question[5];
         mIndex=0;
+        mScore=0;
 
         mTextView=(TextView) findViewById(R.id.text_view);
-        mQuestions[0]= new MartinWong.quizapp.Question(R.string.question1, true);
-        mQuestions[1]= new MartinWong.quizapp.Question(R.string.question2, true);
-        mQuestions[2]= new MartinWong.quizapp.Question(R.string.question3, true);
-        mQuestions[3]= new MartinWong.quizapp.Question(R.string.question4, false);
-        mQuestions[4]= new MartinWong.quizapp.Question(R.string.question5, true);
+        mQuestions[0]= new MartinWong.quizapp.Question(R.string.question1,R.string.question_1_hint, true);
+        mQuestions[1]= new MartinWong.quizapp.Question(R.string.question2, R.string.question_2_hint,true);
+        mQuestions[2]= new MartinWong.quizapp.Question(R.string.question3, R.string.question_3_hint,true);
+        mQuestions[3]= new MartinWong.quizapp.Question(R.string.question4, R.string.question_4_hint,false);
+        mQuestions[4]= new MartinWong.quizapp.Question(R.string.question5, R.string.question_5_hint,true);
 
         mTextView.setText(mQuestions[mIndex].getTextResId());
     }
@@ -53,19 +66,74 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if(view.getId()== R.id.next_button)
         {
-            mIndex++;
-            //Do if statement here:
-
-            mTextView.setText(mQuestions[mIndex].getTextResId());
-
-
+            if(mIndex == 4)
+            {
+                Toast myToast = Toast.makeText(this, "You are done!", Toast.LENGTH_SHORT);
+                myToast.show();
+            }
+            else
+            {
+                mIndex++;
+                //Do if statement here:
+                mTextView.setText(mQuestions[mIndex].getTextResId());
+            }
+        }
+        else if(view.getId()== R.id.BackButton)
+        {
+            if(mIndex==0)
+            {
+                Toast myToast = Toast.makeText(this, "You can not go back!", Toast.LENGTH_SHORT);
+                myToast.show();
+            }
+            else {
+                mIndex--;
+                //Do if statement here:
+                mTextView.setText(mQuestions[mIndex].getTextResId());
+            }
+        }
+        if(view.getId()== R.id.HintButton )
+        {
+            if(mIndex==0)
+            {
+                Toast myToast = Toast.makeText(this, R.string.question_1_hint, Toast.LENGTH_LONG);
+                myToast.show();
+            }
+            else if(mIndex==1)
+            {
+                Toast myToast = Toast.makeText(this, R.string.question_2_hint, Toast.LENGTH_LONG);
+                myToast.show();
+            }
+            else if(mIndex==2)
+            {
+                Toast myToast = Toast.makeText(this, R.string.question_3_hint, Toast.LENGTH_LONG);
+                myToast.show();
+            }
+            else if(mIndex==3)
+            {
+                Toast myToast = Toast.makeText(this, R.string.question_4_hint, Toast.LENGTH_LONG);
+                myToast.show();
+            }
+            else if(mIndex==4)
+            {
+                Toast myToast = Toast.makeText(this, R.string.question_5_hint, Toast.LENGTH_LONG);
+                myToast.show();
+            }
         }
     }
     public boolean checkAnswer(boolean userInput)
     {
         if(mQuestions[mIndex].getAnswer()==userInput)
         {
-            Toast myToast = Toast.makeText(this, "You are correct", Toast.LENGTH_SHORT);
+
+            Toast myToast = Toast.makeText(this, "You are correct", Toast.LENGTH_LONG);
+            myToast.show();
+
+//            mTextView=(TextView) findViewById(R.id.score_view);
+//            mTextView.setText(mScore);
+
+            mScore=mScore+9;
+            myToast = Toast.makeText(this, "Score:"+mScore, Toast.LENGTH_SHORT);
+            myToast.setGravity(Gravity.TOP| Gravity.CENTER_HORIZONTAL, 0, 0);
             myToast.show();
             return true;
         }
