@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mTextView;
+    TextView score_view;
+    int score = 0;
 //    private ScoreView mScoreView;
 //    private Text mScoreview1;
 //    private Text mText;
@@ -36,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mNextButton = (ImageButton) findViewById(R.id.next_button);
         mBackButton = (ImageButton) findViewById(R.id.BackButton);
         mHintButton = (Button) findViewById(R.id.HintButton);
+
+        score_view = (TextView) findViewById(R.id.score_view);
+        score_view.setText("Score: " + score);
 
         mTrueButton.setOnClickListener(this);
         mFalseButton.setOnClickListener(this);
@@ -61,8 +66,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if(view.getId()== R.id.true_button ) {
             checkAnswer(true);
+            score++;
+            score_view.setText("Score: " + score);
         }else if(view.getId()== R.id.false_button ) {
             checkAnswer(false);
+            score--;
+            score_view.setText("Score: " + score);
+
         }
         else if(view.getId()== R.id.next_button)
         {
@@ -131,10 +141,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            mTextView=(TextView) findViewById(R.id.score_view);
 //            mTextView.setText(mScore);
 
-            mScore=mScore+9;
-            myToast = Toast.makeText(this, "Score:"+mScore, Toast.LENGTH_SHORT);
-            myToast.setGravity(Gravity.TOP| Gravity.CENTER_HORIZONTAL, 0, 0);
-            myToast.show();
+//            mScore=mScore+9;
+//            myToast = Toast.makeText(this, "Score:"+mScore, Toast.LENGTH_SHORT);
+//            myToast.setGravity(Gravity.TOP| Gravity.CENTER_HORIZONTAL, 0, 0);
+//            myToast.show();
             return true;
         }
         else

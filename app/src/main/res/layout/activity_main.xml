@@ -14,6 +14,16 @@
         android:textSize="24dp"
         android:textColor="@color/TextColor"
         />
+    <TextView
+        android:id="@+id/score_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score: 0"
+        android:layout_above="@id/text_view"
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        />
     <Button
         android:id="@+id/HintButton"
         android:layout_width="wrap_content"
