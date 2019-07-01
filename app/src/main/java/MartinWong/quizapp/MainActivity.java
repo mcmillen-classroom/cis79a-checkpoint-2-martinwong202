@@ -103,31 +103,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(view.getId()== R.id.HintButton )
         {
-            if(mIndex==0)
-            {
-                Toast myToast = Toast.makeText(this, R.string.question_1_hint, Toast.LENGTH_LONG);
-                myToast.show();
-            }
-            else if(mIndex==1)
-            {
-                Toast myToast = Toast.makeText(this, R.string.question_2_hint, Toast.LENGTH_LONG);
-                myToast.show();
-            }
-            else if(mIndex==2)
-            {
-                Toast myToast = Toast.makeText(this, R.string.question_3_hint, Toast.LENGTH_LONG);
-                myToast.show();
-            }
-            else if(mIndex==3)
-            {
-                Toast myToast = Toast.makeText(this, R.string.question_4_hint, Toast.LENGTH_LONG);
-                myToast.show();
-            }
-            else if(mIndex==4)
-            {
-                Toast myToast = Toast.makeText(this, R.string.question_5_hint, Toast.LENGTH_LONG);
-                myToast.show();
-            }
+            Toast myToast = Toast.makeText(this,mQuestions[mIndex].getmHintTextResId(), Toast.LENGTH_LONG);
+            myToast.setGravity(Gravity.TOP| Gravity.CENTER_HORIZONTAL, 0, 0);
+            myToast.show();
+//            if(mIndex==0)
+//            {
+//                Toast myToast = Toast.makeText(this, R.string.question_1_hint, Toast.LENGTH_LONG);
+//               
+//                myToast.show();
+//            }
+//            else if(mIndex==1)
+//            {
+//                Toast myToast = Toast.makeText(this, R.string.question_2_hint, Toast.LENGTH_LONG);
+//                myToast.setGravity(Gravity.TOP| Gravity.CENTER_HORIZONTAL, 0, 0);
+//                myToast.show();
+//            }
+//            else if(mIndex==2)
+//            {
+//                Toast myToast = Toast.makeText(this, R.string.question_3_hint, Toast.LENGTH_LONG);
+//                myToast.setGravity(Gravity.TOP| Gravity.CENTER_HORIZONTAL, 0, 0);
+//                myToast.show();
+//            }
+//            else if(mIndex==3)
+//            {
+//                Toast myToast = Toast.makeText(this, R.string.question_4_hint, Toast.LENGTH_LONG);
+//                myToast.setGravity(Gravity.TOP| Gravity.CENTER_HORIZONTAL, 0, 0);
+//                myToast.show();
+//            }
+//            else if(mIndex==4)
+//            {
+//                Toast myToast = Toast.makeText(this, R.string.question_5_hint, Toast.LENGTH_LONG);
+//                myToast.setGravity(Gravity.TOP| Gravity.CENTER_HORIZONTAL, 0, 0);
+//                myToast.show();
+//            }
         }
     }
     public boolean checkAnswer(boolean userInput)

@@ -12,6 +12,14 @@ public class Question {
         mAnswer = answer;
     }
 
+    public int getmHintTextResId() {
+        return mHintTextResId;
+    }
+
+    public void setmHintTextResId(int mHintTextResId) {
+        this.mHintTextResId = mHintTextResId;
+    }
+
     public int getTextResId() {
         return mTextResId;
     }
